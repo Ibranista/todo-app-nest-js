@@ -10,6 +10,7 @@ import * as rateLimit from 'express-rate-limit';
 const port = process.env.PORT;
 
 async function bootstrap() {
+  console.log('bootstrapped--->', port);
   const app = await NestFactory.create(
     AppModule.forRoot(await getDbConnectionOptions(process.env.NODE_ENV)),
     {
@@ -69,7 +70,6 @@ async function bootstrap() {
   await runDbMigrations();
 
   await app.listen(port);
-
   Logger.log(`Server started running on http://localhost:${port}`, 'Bootstrap');
 }
 
